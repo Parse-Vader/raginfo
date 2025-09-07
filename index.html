@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Uitleg: Retrieval-Augmented Generation voor AI en bijles</title>
+    <meta name="description" content="Leer wat RAG (Retrieval-Augmented Generation) is, waarom het waardevol is voor AI, en ontdek praktische use-cases zoals bijles met PDF, klantenservice en bedrijfskennis." />
+    <meta name="keywords" content="RAG, AI, Retrieval-Augmented Generation, context window, bijles, PDF, klantenservice, bedrijfskennis, LLM, ChatGPT" />
+    <meta name="author" content="Torabi">
+    <style>
+        /* Algemene styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9fb;
+            color: #333;
+            margin: 0;
+            padding: 0 10px;
+        }
+        header {
+            background-color: #2E86AB;
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        main.container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 15px;
+        }
+        section {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2E86AB;
+            font-size: 1.3rem;
+        }
+        ul {
+            margin: 10px 0 20px 20px;
+        }
+        code {
+            background-color: #eef0f3;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .toggle-btn {
+            float: right;
+            padding: 5px 10px;
+            margin-top: -40px;
+            background-color: white;
+            color: #2E86AB;
+            border: 2px solid #2E86AB;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.4rem; }
+            section { padding: 15px; }
+            h2 { font-size: 1.1rem; }
+            .toggle-btn { margin-top: -35px; padding: 4px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="title">RAG: Retrieval-Augmented Generation</h1>
+        <button class="toggle-btn" onclick="toggleLanguage()">EN/NL</button>
+    </header>
+
+    <main class="container">
+        <section id="section1">
+            <h2>Wat is RAG?</h2>
+            <p>
+                <strong>Retrieval-Augmented Generation (RAG)</strong> is een AI-techniek waarbij een taalmodel niet alleen
+                antwoord genereert op basis van zijn training, maar ook relevante informatie ophaalt uit externe bronnen,
+                zoals documenten, kennisbanken of databases. Hierdoor worden de antwoorden nauwkeuriger en relevanter.
+            </p>
+        </section>
+
+        <section id="section2">
+            <h2>Waarom RAG handig is</h2>
+            <ul>
+                <li><strong>Accuraat en actueel:</strong> AI haalt specifieke, recente informatie op.</li>
+                <li><strong>Domeinspecifiek:</strong> antwoorden zijn afgestemd op jouw data of organisatie.</li>
+                <li><strong>Vermindert fouten:</strong> minder kans op verzonnen antwoorden.</li>
+                <li><strong>Langdurige context:</strong> info buiten het token-limiet kan alsnog gebruikt worden via retrieval.</li>
+            </ul>
+        </section>
+
+        <section id="section3">
+            <h2>Context window probleem</h2>
+            <p>
+                LLMs hebben een beperkt context window: ze kunnen maar een bepaald aantal tokens tegelijk verwerken.
+                Alles wat buiten dit window valt, kan door het model “vergeten” worden.
+            </p>
+            <p>
+                <strong>Voorbeeld:</strong> je zegt <code>Mijn naam is Marco van Basten</code> aan het begin van een lange sessie.
+                Later kan de AI dit niet meer onthouden zonder RAG.
+            </p>
+        </section>
+
+        <section id="section4">
+            <h2>Concrete use-case: bijles met PDF</h2>
+            <p>
+                Stel: je bent student en wilt AI gebruiken voor bijles. Je kunt een PDF van je boek uploaden en vragen stellen
+                zoals voor een toets of om uitleg over specifieke hoofdstukken te krijgen.
+            </p>
+            <ul>
+                <li>Upload PDF van het boek.</li>
+                <li>Stel vragen: bijvoorbeeld <code>Leg hoofdstuk 3 uit</code> of <code>Maak oefenvragen over paragraaf 5</code>.</li>
+                <li>AI gebruikt RAG om relevante info uit de PDF te halen en direct antwoorden te geven.</li>
+            </ul>
+        </section>
+
+        <section id="section5">
+            <h2>Andere relevante use-cases</h2>
+            <ul>
+                <li><strong>Klantenservice:</strong> AI-chatbots beantwoorden vragen van klanten op basis van actuele handleidingen, FAQ’s of interne documenten.</li>
+                <li><strong>Bedrijfskennis ontsluiten:</strong> medewerkers vinden snel interne policies, technische manuals of procedures.</li>
+                <li><strong>Besluitvorming ondersteunen:</strong> AI haalt relevante rapporten of data op zodat managers sneller gefundeerde keuzes kunnen maken.</li>
+                <li><strong>Persoonlijke assistentie:</strong> AI kan gebruikers helpen bij complexe taken, zoals planning of training, door specifieke informatie op te halen.</li>
+            </ul>
+        </section>
+
+        <section id="section6">
+            <h2>Samengevat</h2>
+            <ul>
+                <li>RAG combineert generatieve AI met externe bronnen.</li>
+                <li>Het verbetert nauwkeurigheid, relevantie en contextbeheer.</li>
+                <li>Gebruikscases: onderwijs, klantenservice, bedrijfskennis, persoonlijke assistentie.</li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        const nlContent = {
+            title: "RAG: Retrieval-Augmented Generation",
+            section1: "<h2>Wat is RAG?</h2><p><strong>Retrieval-Augmented Generation (RAG)</strong> is een AI-techniek waarbij een taalmodel niet alleen antwoord genereert op basis van zijn training, maar ook relevante informatie ophaalt uit externe bronnen, zoals documenten, kennisbanken of databases. Hierdoor worden de antwoorden nauwkeuriger en relevanter.</p>",
+            section2: "<h2>Waarom RAG handig is</h2><ul><li><strong>Accuraat en actueel:</strong> AI haalt specifieke, recente informatie op.</li><li><strong>Domeinspecifiek:</strong> antwoorden zijn afgestemd op jouw data of organisatie.</li><li><strong>Vermindert fouten:</strong> minder kans op verzonnen antwoorden.</li><li><strong>Langdurige context:</strong> info buiten het token-limiet kan alsnog gebruikt worden via retrieval.</li></ul>",
+            section3: "<h2>Context window probleem</h2><p>LLMs hebben een beperkt context window: ze kunnen maar een bepaald aantal tokens tegelijk verwerken. Alles wat buiten dit window valt, kan door het model 'vergeten' worden.</p><p><strong>Voorbeeld:</strong> je zegt <code>Mijn naam is Marco van Basten</code> aan het begin van een lange sessie. Later kan de AI dit niet meer onthouden zonder RAG.</p>",
+            section4: "<h2>Concrete use-case: bijles met PDF</h2><p>Stel: je bent student en wilt AI gebruiken voor bijles. Je kunt een PDF van je boek uploaden en vragen stellen zoals voor een toets of om uitleg over specifieke hoofdstukken te krijgen.</p><ul><li>Upload PDF van het boek.</li><li>Stel vragen: bijvoorbeeld <code>Leg hoofdstuk 3 uit</code> of <code>Maak oefenvragen over paragraaf 5</code>.</li><li>AI gebruikt RAG om relevante info uit de PDF te halen en direct antwoorden te geven.</li></ul>",
+            section5: "<h2>Andere relevante use-cases</h2><ul><li><strong>Klantenservice:</strong> AI-chatbots beantwoorden vragen van klanten op basis van actuele handleidingen, FAQ’s of interne documenten.</li><li><strong>Bedrijfskennis ontsluiten:</strong> medewerkers vinden snel interne policies, technische manuals of procedures.</li><li><strong>Besluitvorming ondersteunen:</strong> AI haalt relevante rapporten of data op zodat managers sneller gefundeerde keuzes kunnen maken.</li><li><strong>Persoonlijke assistentie:</strong> AI kan gebruikers helpen bij complexe taken, zoals planning of training, door specifieke informatie op te halen.</li></ul>",
+            section6: "<h2>Samengevat</h2><ul><li>RAG combineert generatieve AI met externe bronnen.</li><li>Het verbetert nauwkeurigheid, relevantie en contextbeheer.</li><li>Gebruikscases: onderwijs, klantenservice, bedrijfskennis, persoonlijke assistentie.</li></ul>"
+        };
+
+        const enContent = {
+            title: "RAG: Retrieval-Augmented Generation",
+            section1: "<h2>What is RAG?</h2><p><strong>Retrieval-Augmented Generation (RAG)</strong> is an AI technique where a language model not only generates answers based on its training, but also retrieves relevant information from external sources, such as documents, knowledge bases, or databases. This makes the answers more accurate and relevant.</p>",
+            section2: "<h2>Why RAG is useful</h2><ul><li><strong>Accurate and up-to-date:</strong> AI retrieves recent or specific information.</li><li><strong>Domain-specific:</strong> answers are tailored to your data or organization.</li><li><strong>Reduces errors:</strong> less chance of made-up answers.</li><li><strong>Long-term context:</strong> information outside the token limit can still be used via retrieval.</li></ul>",
+            section3: "<h2>Context window problem</h2><p>LLMs have a limited context window: they can only process a certain number of tokens at a time. Anything outside this window can be 'forgotten'.</p><p><strong>Example:</strong> you say <code>My name is Marco van basten</code> at the start of a long session. Later, the AI might not remember this without RAG.</p>",
+            section4: "<h2>Example use-case: tutoring with PDF</h2><p>Imagine you are a student and want to use AI for tutoring. You can upload a PDF of your book and ask questions for tests or to explain specific chapters.</p><ul><li>Upload the PDF of the book.</li><li>Ask questions: e.g., <code>Explain chapter 3</code> or <code>Create practice questions for section 5</code>.</li><li>AI uses RAG to extract relevant info from the PDF and provide precise answers.</li></ul>",
+            section5: "<h2>Other relevant use-cases</h2><ul><li><strong>Customer support:</strong> AI chatbots answer customer questions using up-to-date manuals, FAQs, or internal documents.</li><li><strong>Business knowledge retrieval:</strong> employees quickly find internal policies, technical manuals, or procedures.</li><li><strong>Decision support:</strong> AI retrieves relevant reports or data so managers can make informed decisions faster.</li><li><strong>Personal assistance:</strong> AI helps users with complex tasks such as scheduling or training by retrieving specific information.</li></ul>",
+            section6: "<h2>Summary</h2><ul><li>RAG combines generative AI with external sources.</li><li>It improves accuracy, relevance, and context handling.</li><li>Use-cases: education, customer support, business knowledge, personal assistance.</li></ul>"
+        };
+
+        let currentLanguage = "nl";
+
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === "nl" ? "en" : "nl";
+            const content = currentLanguage === "nl" ? nlContent : enContent;
+
+            document.getElementById("title").innerText = content.title;
+            document.getElementById("section1").innerHTML = content.section1;
+            document.getElementById("section2").innerHTML = content.section2;
+            document.getElementById("section3").innerHTML = content.section3;
+            document.getElementById("section4").innerHTML = content.section4;
+            document.getElementById("section5").innerHTML = content.section5;
+            document.getElementById("section6").innerHTML = content.section6;
+        }
+    </script>
+</body>
+</html>
